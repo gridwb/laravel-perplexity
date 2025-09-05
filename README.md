@@ -5,23 +5,20 @@ Laravel Perplexity is a convenient wrapper for interacting with the Perplexity A
 ## Installation
 
 1. Install the package
-
-```bash
-composer require gridwb/laravel-perplexity
-```
+    ```bash
+    composer require gridwb/laravel-perplexity
+    ```
 
 2. Publish the configuration file
-
-```bash
-php artisan vendor:publish --tag="perplexity-config"
-```
+    ```bash
+    php artisan vendor:publish --tag="perplexity-config"
+    ```
 
 3. Add environment variables
-
-```bash
-PERPLEXITY_API_URL=https://api.perplexity.ai
-PERPLEXITY_API_KEY=your-api-key-here
-```
+    ```bash
+    PERPLEXITY_API_URL=https://api.perplexity.ai
+    PERPLEXITY_API_KEY=your-api-key-here
+    ```
 
 ## Usage
 
