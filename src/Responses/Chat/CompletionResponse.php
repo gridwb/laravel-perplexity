@@ -15,6 +15,7 @@ class CompletionResponse extends AbstractResponse
     /**
      * @param  Collection<int, CompletionResponseChoice>  $choices
      * @param  Collection<int, CompletionResponseSearchResult>|null  $searchResults
+     * @param  Collection<int, CompletionResponseVideo>|null  $videos
      */
     public function __construct(
         public string $id,
@@ -28,5 +29,7 @@ class CompletionResponse extends AbstractResponse
         #[MapOutputName('search_results')]
         #[DataCollectionOf(CompletionResponseSearchResult::class)]
         public ?Collection $searchResults = null,
+        #[DataCollectionOf(CompletionResponseVideo::class)]
+        public ?Collection $videos = null,
     ) {}
 }
