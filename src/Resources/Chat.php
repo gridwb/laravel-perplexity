@@ -8,6 +8,7 @@ use Gridwb\LaravelPerplexity\Contracts\ApiClientContract;
 use Gridwb\LaravelPerplexity\Contracts\Resources\ChatContract;
 use Gridwb\LaravelPerplexity\Resources\Concerns\Streamable;
 use Gridwb\LaravelPerplexity\Responses\Chat\AsyncCompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Chat\AuthTokenResponse;
 use Gridwb\LaravelPerplexity\Responses\Chat\CompletionResponse;
 use Gridwb\LaravelPerplexity\Responses\Chat\ListAsyncCompletionsResponse;
 use Gridwb\LaravelPerplexity\Responses\StreamResponse;
@@ -96,5 +97,33 @@ readonly class Chat implements ChatContract
         );
 
         return AsyncCompletionResponse::fromResponse($response);
+    }
+
+    public function generateAuthToken(string $tokenName): AuthTokenResponse
+    {
+        $parameters['token_name'] = $tokenName;
+
+        $response = $this->apiClient->request(
+            Request::METHOD_POST,
+            'generate_auth_token',
+            [
+                RequestOptions::JSON => $parameters,
+            ]
+        );
+
+        return AuthTokenResponse::fromResponse($response);
+    }
+
+    public function revokeAuthToken(string $authToken): void
+    {
+        $parameters['auth_token'] = $authToken;
+
+        $this->apiClient->request(
+            Request::METHOD_POST,
+            'revoke_auth_token',
+            [
+                RequestOptions::JSON => $parameters,
+            ]
+        );
     }
 }
