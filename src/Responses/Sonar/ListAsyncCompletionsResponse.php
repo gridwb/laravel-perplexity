@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Gridwb\LaravelPerplexity\Responses\Chat;
+namespace Gridwb\LaravelPerplexity\Responses\Sonar;
 
 use Gridwb\LaravelPerplexity\Responses\AbstractResponse;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
-use Spatie\LaravelData\Attributes\MapInputName;
-use Spatie\LaravelData\Attributes\MapOutputName;
+use Spatie\LaravelData\Attributes\MapName;
+use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
+#[MapName(SnakeCaseMapper::class)]
 class ListAsyncCompletionsResponse extends AbstractResponse
 {
     /**
@@ -18,8 +19,6 @@ class ListAsyncCompletionsResponse extends AbstractResponse
     public function __construct(
         #[DataCollectionOf(AsyncCompletionResponse::class)]
         public Collection $requests,
-        #[MapInputName('next_token')]
-        #[MapOutputName('next_token')]
         public ?int $nextToken = null,
     ) {}
 }

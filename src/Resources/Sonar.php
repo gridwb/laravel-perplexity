@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Gridwb\LaravelPerplexity\Resources;
 
 use Gridwb\LaravelPerplexity\Contracts\ApiClientContract;
-use Gridwb\LaravelPerplexity\Contracts\Resources\ChatContract;
+use Gridwb\LaravelPerplexity\Contracts\Resources\SonarContract;
 use Gridwb\LaravelPerplexity\Resources\Concerns\Streamable;
-use Gridwb\LaravelPerplexity\Responses\Chat\AsyncCompletionResponse;
-use Gridwb\LaravelPerplexity\Responses\Chat\AuthTokenResponse;
-use Gridwb\LaravelPerplexity\Responses\Chat\CompletionResponse;
-use Gridwb\LaravelPerplexity\Responses\Chat\ListAsyncCompletionsResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncCompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\AuthTokenResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\CompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\ListAsyncCompletionsResponse;
 use Gridwb\LaravelPerplexity\Responses\StreamResponse;
 use GuzzleHttp\RequestOptions;
 use Symfony\Component\HttpFoundation\Request;
 
-readonly class Chat implements ChatContract
+readonly class Sonar implements SonarContract
 {
     use Streamable;
 
@@ -23,7 +23,7 @@ readonly class Chat implements ChatContract
         private ApiClientContract $apiClient,
     ) {}
 
-    public function completions(array $parameters): CompletionResponse
+    public function createCompletion(array $parameters): CompletionResponse
     {
         $this->ensureNotStreamed($parameters);
 
@@ -38,7 +38,7 @@ readonly class Chat implements ChatContract
         return CompletionResponse::fromResponse($response);
     }
 
-    public function completionsStreamed(array $parameters): StreamResponse
+    public function createStreamedCompletion(array $parameters): StreamResponse
     {
         $parameters = $this->setStreamParameter($parameters);
 

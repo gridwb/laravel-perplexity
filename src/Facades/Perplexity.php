@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Facades;
 
-use Gridwb\LaravelPerplexity\Contracts\Resources\ChatContract;
 use Gridwb\LaravelPerplexity\Contracts\Resources\SearchContract;
+use Gridwb\LaravelPerplexity\Contracts\Resources\SonarContract;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static ChatContract chat()
  * @method static SearchContract search()
+ * @method static SonarContract sonar()
  */
 final class Perplexity extends Facade
 {

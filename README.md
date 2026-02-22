@@ -6,7 +6,7 @@ Laravel Perplexity is a convenient wrapper for interacting with the Perplexity A
 - [Installation](#installation)
 - [Usage](#usage)
     - [Search Resource](#search-resource)
-    - [Chat Resource](#chat-resource)
+    - [Sonar Resource](#sonar-resource)
 - [Testing](#testing)
 - [Changelog](#changelog)
 - [License](#license)
@@ -43,8 +43,11 @@ Search request:
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
 
 $response = Perplexity::search()->search([
-    'query' => 'latest AI developments 2024',
+    'query' => 'latest AI developments 2026',
 ]);
+
+echo $response->id;
+echo $response->serverTime;
 
 foreach ($response->results as $result) {
     echo $result->title;
@@ -55,7 +58,7 @@ foreach ($response->results as $result) {
 }
 ```
 
-### `Chat` Resource
+### `Sonar` Resource
 
 #### `completions`
 
@@ -66,11 +69,11 @@ Completions request:
 
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
 
-$response = Perplexity::chat()->completions([
-    'model'    => 'sonar',
+$response = Perplexity::sonar()->createCompletion([
+    'model' => 'sonar',
     'messages' => [
         [
-            'role'    => 'user',
+            'role' => 'user',
             'content' => 'How many stars are there in our galaxy?',
         ],
     ],
@@ -90,13 +93,13 @@ Streamed completions request:
 <?php
 
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
-use Gridwb\LaravelPerplexity\Responses\Chat\CompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\CompletionResponse;
 
-$stream = Perplexity::chat()->completionsStreamed([
-    'model'    => 'sonar',
+$stream = Perplexity::sonar()->createStreamedCompletion([
+    'model' => 'sonar',
     'messages' => [
         [
-            'role'    => 'user',
+            'role' => 'user',
             'content' => 'How many stars are there in our galaxy?',
         ],
     ],
@@ -120,12 +123,12 @@ Create an asynchronous completion request:
 
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
 
-$response = Perplexity::chat()->createAsyncCompletion([
+$response = Perplexity::sonar()->createAsyncCompletion([
     'request' => [
-        'model'    => 'sonar-deep-research',
+        'model' => 'sonar-deep-research',
         'messages' => [
             [
-                'role'    => 'user',
+                'role' => 'user',
                 'content' => 'How many stars are there in our galaxy?',
             ],
         ],
@@ -147,10 +150,10 @@ List asynchronous completions request:
 
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
 
-$limit     = 10;
+$limit = 10;
 $nextToken = '<string>';
 
-$response = Perplexity::chat()->listAsyncCompletions($limit, $nextToken);
+$response = Perplexity::sonar()->listAsyncCompletions($limit, $nextToken);
 
 foreach ($response->requests as $request) {
     echo $request->id;
@@ -171,7 +174,7 @@ use Gridwb\LaravelPerplexity\Facades\Perplexity;
 
 $requestId = '<string>';
 
-$response = Perplexity::chat()->getAsyncCompletion($requestId);
+$response = Perplexity::sonar()->getAsyncCompletion($requestId);
 
 echo $response->id;
 echo $response->model;
@@ -190,7 +193,7 @@ use Gridwb\LaravelPerplexity\Facades\Perplexity;
 
 $tokenName = '<string>';
 
-$response = Perplexity::chat()->generateAuthToken($tokenName);
+$response = Perplexity::sonar()->generateAuthToken($tokenName);
 
 echo $response->authToken;
 echo $response->createdAtEpochSeconds;
@@ -208,7 +211,7 @@ use Gridwb\LaravelPerplexity\Facades\Perplexity;
 
 $authToken = '<string>';
 
-Perplexity::chat()->revokeAuthToken($authToken);
+Perplexity::sonar()->revokeAuthToken($authToken);
 ```
 
 ## Testing

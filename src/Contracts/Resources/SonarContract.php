@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Contracts\Resources;
 
-use Gridwb\LaravelPerplexity\Responses\Chat\AsyncCompletionResponse;
-use Gridwb\LaravelPerplexity\Responses\Chat\AuthTokenResponse;
-use Gridwb\LaravelPerplexity\Responses\Chat\CompletionResponse;
-use Gridwb\LaravelPerplexity\Responses\Chat\ListAsyncCompletionsResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncCompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\AuthTokenResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\CompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\ListAsyncCompletionsResponse;
 use Gridwb\LaravelPerplexity\Responses\StreamResponse;
 use GuzzleHttp\Exception\GuzzleException;
 
-interface ChatContract
+interface SonarContract
 {
     /**
      * @param  array<string, mixed>  $parameters
@@ -20,7 +20,7 @@ interface ChatContract
      *
      * @see https://docs.perplexity.ai/api-reference/chat-completions-post
      */
-    public function completions(array $parameters): CompletionResponse;
+    public function createCompletion(array $parameters): CompletionResponse;
 
     /**
      * @param  array<string, mixed>  $parameters
@@ -30,7 +30,7 @@ interface ChatContract
      *
      * @see https://docs.perplexity.ai/api-reference/chat-completions-post
      */
-    public function completionsStreamed(array $parameters): StreamResponse;
+    public function createStreamedCompletion(array $parameters): StreamResponse;
 
     /**
      * @param  array<string, mixed>  $parameters

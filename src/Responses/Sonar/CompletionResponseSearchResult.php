@@ -2,10 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Gridwb\LaravelPerplexity\Responses\Chat;
+namespace Gridwb\LaravelPerplexity\Responses\Sonar;
 
+use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
+#[MapName(SnakeCaseMapper::class)]
 class CompletionResponseSearchResult extends Data
 {
     public function __construct(

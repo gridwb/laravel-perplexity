@@ -6,8 +6,8 @@ namespace Gridwb\LaravelPerplexity;
 
 use Gridwb\LaravelPerplexity\Contracts\ApiClientContract;
 use Gridwb\LaravelPerplexity\Contracts\ClientContract;
-use Gridwb\LaravelPerplexity\Resources\Chat;
 use Gridwb\LaravelPerplexity\Resources\Search;
+use Gridwb\LaravelPerplexity\Resources\Sonar;
 
 readonly class Client implements ClientContract
 {
@@ -15,9 +15,9 @@ readonly class Client implements ClientContract
         private ApiClientContract $apiClient,
     ) {}
 
-    public function chat(): Chat
+    public function sonar(): Sonar
     {
-        return new Chat($this->apiClient);
+        return new Sonar($this->apiClient);
     }
 
     public function search(): Search
