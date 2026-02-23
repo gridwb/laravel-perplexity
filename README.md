@@ -5,6 +5,7 @@ Laravel Perplexity is a convenient wrapper for interacting with the Perplexity A
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
+    - [Agent Resource](#agent-resource)
     - [Authentication Resource](#authentication-resource)
     - [Embeddings Resource](#embeddings-resource)
     - [Search Resource](#search-resource)
@@ -32,6 +33,93 @@ Laravel Perplexity is a convenient wrapper for interacting with the Perplexity A
     ```
 
 ## Usage
+
+### `Agent` Resource
+
+#### `create response`
+
+Generate a response for the provided input with optional web search and reasoning.
+
+```php
+<?php
+
+use Gridwb\LaravelPerplexity\Facades\Perplexity;
+use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\FetchUrlResultsOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\FunctionCallOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\MessageOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\SearchResultsOutputItem;
+
+$response = Perplexity::agent()->createResponse([
+    'model' => 'openai/gpt-5.2',
+    'input' => 'What are the latest developments in AI?',
+    'tools' => [
+        [
+            'type' => 'web_search',
+        ],
+    ],
+    'instructions' => 'You have access to a web_search tool. Use it for questions about current events, news, or recent developments. Use 1 query for simple questions. Keep queries brief: 2-5 words. NEVER ask permission to search - just search when appropriate',
+]);
+
+foreach ($response->output as $outputItem) {
+    if ($outputItem instanceof MessageOutputItem) {
+        echo $outputItem->id;
+        echo $outputItem->role->value;
+        echo $outputItem->status->value;
+        echo $outputItem->type->value;
+
+        foreach ($outputItem->content as $content) {
+            echo $content->text;
+            echo $content->type->value;
+
+            foreach ($content->annotations as $annotation) {
+                echo $annotation->endIndex;
+                echo $annotation->startIndex;
+                echo $annotation->title;
+                echo $annotation->type;
+                echo $annotation->url;
+            }
+        }
+    }
+
+    if ($outputItem instanceof SearchResultsOutputItem) {
+        echo $outputItem->type->value;
+
+        foreach ($outputItem->results as $result) {
+            echo $result->id;
+            echo $result->snippet;
+            echo $result->title;
+            echo $result->url;
+            echo $result->date;
+            echo $result->lastUpdated;
+            echo $result->source->value;
+        }
+
+        foreach ($outputItem->queries ?? [] as $query) {
+            echo $query;
+        }
+    }
+
+    if ($outputItem instanceof FetchUrlResultsOutputItem) {
+        echo $outputItem->type->value;
+
+        foreach ($outputItem->contents as $content) {
+            echo $content->snippet;
+            echo $content->title;
+            echo $content->url;
+        }
+    }
+
+    if ($outputItem instanceof FunctionCallOutputItem) {
+        echo $outputItem->arguments;
+        echo $outputItem->callId;
+        echo $outputItem->id;
+        echo $outputItem->name;
+        echo $outputItem->status->value;
+        echo $outputItem->type->value;
+        echo $outputItem->thoughtSignature;
+    }
+}
+```
 
 ### `Authentication` Resource
 
@@ -119,6 +207,7 @@ $response = Perplexity::embeddings()->createContextualizedEmbeddings([
 foreach ($response->data as $contextualizedEmbedding) {
     echo $contextualizedEmbedding->object;
     echo $contextualizedEmbedding->index;
+
     foreach ($contextualizedEmbedding->data as $embedding) {
         echo $embedding->object;
         echo $embedding->index;
