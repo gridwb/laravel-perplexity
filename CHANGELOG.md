@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-perplexity` will be documented in this file.
 
+## 1.2.0 - 2026-02-23
+
+- updated all existing resources
+- removed `chat` resource
+- added `agent` resource
+- added `authentication` resource
+- added `embeddings` resource
+- added `sonar` resource
+
 ## 1.1.0 - 2025-11-15
 
 - added `videos` field for `CompletionReposonse`
