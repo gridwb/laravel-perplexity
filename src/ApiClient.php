@@ -18,8 +18,11 @@ class ApiClient implements ApiClientContract
         private readonly string $apiKey,
     ) {}
 
-    public function request(string $method, string $path, array $options = []): ResponseInterface
-    {
+    public function request(
+        string $method,
+        string $path,
+        array $options = []
+    ): ResponseInterface {
         return $this->getClient()->request($method, $path, $options);
     }
 
