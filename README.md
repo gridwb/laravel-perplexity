@@ -36,6 +36,8 @@ Laravel Perplexity is a convenient wrapper for interacting with the Perplexity A
 
 #### `generate auth token`
 
+Generates a new authentication token for API access.
+
 ```php
 <?php
 
@@ -51,6 +53,8 @@ echo $response->tokenName;
 ```
 
 #### `revoke auth token`
+
+Revokes an existing authentication token.
 
 ```php
 <?php
@@ -91,16 +95,16 @@ foreach ($response->results as $result) {
 
 ### `Sonar` Resource
 
-#### `completions`
+#### `create chat completion`
 
-Completions request:
+Generate a chat completion response for the given conversation.
 
 ```php
 <?php
 
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
 
-$response = Perplexity::sonar()->createCompletion([
+$response = Perplexity::sonar()->createChatCompletion([
     'model' => 'sonar',
     'messages' => [
         [
@@ -116,9 +120,9 @@ foreach ($response->choices as $choice) {
 }
 ```
 
-#### `completions streamed`
+#### `create streamed chat completion`
 
-Streamed completions request:
+Generate a streamed chat completion response for the given conversation.
 
 ```php
 <?php
@@ -126,7 +130,7 @@ Streamed completions request:
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
 use Gridwb\LaravelPerplexity\Responses\Sonar\ChatCompletionResponse;
 
-$stream = Perplexity::sonar()->createStreamedCompletion([
+$stream = Perplexity::sonar()->createStreamedChatCompletion([
     'model' => 'sonar',
     'messages' => [
         [
@@ -145,16 +149,16 @@ foreach ($stream as $response) {
 }
 ```
 
-#### `create async completion`
+#### `create async chat completion`
 
-Create an asynchronous completion request:
+Submit an asynchronous chat completion request.
 
 ```php
 <?php
 
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
 
-$response = Perplexity::sonar()->createAsyncCompletion([
+$response = Perplexity::sonar()->createAsyncChatCompletion([
     'request' => [
         'model' => 'sonar-deep-research',
         'messages' => [
@@ -172,9 +176,9 @@ echo $response->status->value;
 // ...
 ```
 
-#### `list async completions`
+#### `list async chat completions`
 
-List asynchronous completions request:
+Retrieve a list of all asynchronous chat completion requests for a given user.
 
 ```php
 <?php
@@ -184,7 +188,7 @@ use Gridwb\LaravelPerplexity\Facades\Perplexity;
 $limit = 10;
 $nextToken = '<string>';
 
-$response = Perplexity::sonar()->listAsyncCompletions($limit, $nextToken);
+$response = Perplexity::sonar()->listAsyncChatCompletions($limit, $nextToken);
 
 foreach ($response->requests as $request) {
     echo $request->id;
@@ -194,9 +198,9 @@ foreach ($response->requests as $request) {
 }
 ```
 
-#### `get async completion`
+#### `get async chat completion`
 
-Get a specific asynchronous completion request:
+Retrieve the response for a given asynchronous chat completion request.
 
 ```php
 <?php
@@ -205,7 +209,7 @@ use Gridwb\LaravelPerplexity\Facades\Perplexity;
 
 $requestId = '<string>';
 
-$response = Perplexity::sonar()->getAsyncCompletion($requestId);
+$response = Perplexity::sonar()->getAsyncChatCompletion($requestId);
 
 echo $response->id;
 echo $response->model;

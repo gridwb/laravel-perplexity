@@ -15,12 +15,12 @@ class AsyncChatCompletionResponse extends AbstractResponse
     public function __construct(
         public string $id,
         public string $model,
-        public Status $status,
         public int $createdAt,
+        public Status $status,
         public ?int $startedAt = null,
         public ?int $completedAt = null,
+        public ?ChatCompletionResponse $response = null,
         public ?int $failedAt = null,
         public ?string $errorMessage = null,
-        public ?ChatCompletionResponse $response = null,
     ) {}
 }

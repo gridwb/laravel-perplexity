@@ -19,6 +19,6 @@ class AsyncChatCompletionsResponse extends AbstractResponse
     public function __construct(
         #[DataCollectionOf(AsyncChatCompletionResponse::class)]
         public Collection $requests,
-        public ?int $nextToken = null,
+        public ?string $nextToken = null,
     ) {}
 }
