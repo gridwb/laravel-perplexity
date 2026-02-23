@@ -10,7 +10,6 @@ use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FetchUrlResultsOutputIt
 use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FunctionCallOutputItem;
 use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\MessageOutputItem;
 use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\SearchResultsOutputItem;
-use Illuminate\Support\Collection;
 use InvalidArgumentException;
 use Spatie\LaravelData\Casts\Cast;
 use Spatie\LaravelData\Support\Creation\CreationContext;
@@ -21,38 +20,25 @@ class OutputItemCast implements Cast
     /**
      * @param  array<string, mixed>  $properties
      * @param  CreationContext<AbstractOutputItem>  $context
-     * @return Collection<int, AbstractOutputItem>
      */
     public function cast(
         DataProperty $property,
         mixed $value,
         array $properties,
         CreationContext $context
-    ): Collection {
-        if (! is_array($value)) {
-            throw new InvalidArgumentException('Output items data must be an array.');
+    ): AbstractOutputItem {
+        /** @phpstan-ignore-next-line */
+        $type = Type::tryFrom($value['type'] ?? null);
+
+        if (is_null($type)) {
+            throw new InvalidArgumentException('Unknown output item type.');
         }
 
-        $outputItems = Collection::make();
-
-        foreach ($value as $data) {
-            /** @phpstan-ignore-next-line */
-            $type = Type::tryFrom($data['type'] ?? null);
-
-            if (is_null($type)) {
-                throw new InvalidArgumentException('Unknown output item type.');
-            }
-
-            $outputItem = match ($type) {
-                Type::Message => MessageOutputItem::from($data),
-                Type::SearchResults => SearchResultsOutputItem::from($data),
-                Type::FetchUrlResults => FetchUrlResultsOutputItem::from($data),
-                Type::FunctionCall => FunctionCallOutputItem::from($data),
-            };
-
-            $outputItems->push($outputItem);
-        }
-
-        return $outputItems;
+        return match ($type) {
+            Type::Message => MessageOutputItem::from($value),
+            Type::SearchResults => SearchResultsOutputItem::from($value),
+            Type::FetchUrlResults => FetchUrlResultsOutputItem::from($value),
+            Type::FunctionCall => FunctionCallOutputItem::from($value),
+        };
     }
 }

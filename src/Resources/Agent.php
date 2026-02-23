@@ -8,6 +8,8 @@ use Gridwb\LaravelPerplexity\Contracts\ApiClientContract;
 use Gridwb\LaravelPerplexity\Contracts\Resources\AgentContract;
 use Gridwb\LaravelPerplexity\Resources\Concerns\Streamable;
 use Gridwb\LaravelPerplexity\Responses\Agent\AgentResponse;
+use Gridwb\LaravelPerplexity\Responses\Agent\StreamAgentResponse;
+use Gridwb\LaravelPerplexity\Responses\StreamResponse;
 use GuzzleHttp\RequestOptions;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -32,5 +34,21 @@ readonly class Agent implements AgentContract
         );
 
         return AgentResponse::fromResponse($response);
+    }
+
+    public function createStreamedResponse(array $parameters): StreamResponse
+    {
+        $parameters = $this->setStreamParameter($parameters);
+
+        $response = $this->apiClient->request(
+            Request::METHOD_POST,
+            'v1/responses',
+            [
+                RequestOptions::STREAM => true,
+                RequestOptions::JSON => $parameters,
+            ]
+        );
+
+        return new StreamResponse(StreamAgentResponse::class, $response);
     }
 }
