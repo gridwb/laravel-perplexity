@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gridwb\LaravelPerplexity\Responses\Sonar;
+namespace Gridwb\LaravelPerplexity\Responses\Authentication;
 
 use Gridwb\LaravelPerplexity\Responses\AbstractResponse;
 use Spatie\LaravelData\Attributes\MapName;

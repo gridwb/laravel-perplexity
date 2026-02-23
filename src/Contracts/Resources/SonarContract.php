@@ -6,7 +6,6 @@ namespace Gridwb\LaravelPerplexity\Contracts\Resources;
 
 use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncChatCompletionResponse;
 use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncChatCompletionsResponse;
-use Gridwb\LaravelPerplexity\Responses\Sonar\AuthTokenResponse;
 use Gridwb\LaravelPerplexity\Responses\Sonar\ChatCompletionResponse;
 use Gridwb\LaravelPerplexity\Responses\StreamResponse;
 use GuzzleHttp\Exception\GuzzleException;
@@ -54,18 +53,4 @@ interface SonarContract
      * @see https://docs.perplexity.ai/api-reference/async-chat-completions-request_id-get
      */
     public function getAsyncChatCompletion(string $requestId): AsyncChatCompletionResponse;
-
-    /**
-     * @throws GuzzleException
-     *
-     * @see https://docs.perplexity.ai/api-reference/generate-auth-token-post
-     */
-    public function generateAuthToken(string $tokenName): AuthTokenResponse;
-
-    /**
-     * @throws GuzzleException
-     *
-     * @see https://docs.perplexity.ai/api-reference/revoke-auth-token-post
-     */
-    public function revokeAuthToken(string $authToken): void;
 }

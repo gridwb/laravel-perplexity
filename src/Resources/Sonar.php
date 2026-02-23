@@ -9,7 +9,6 @@ use Gridwb\LaravelPerplexity\Contracts\Resources\SonarContract;
 use Gridwb\LaravelPerplexity\Resources\Concerns\Streamable;
 use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncChatCompletionResponse;
 use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncChatCompletionsResponse;
-use Gridwb\LaravelPerplexity\Responses\Sonar\AuthTokenResponse;
 use Gridwb\LaravelPerplexity\Responses\Sonar\ChatCompletionResponse;
 use Gridwb\LaravelPerplexity\Responses\StreamResponse;
 use GuzzleHttp\RequestOptions;
@@ -97,33 +96,5 @@ readonly class Sonar implements SonarContract
         );
 
         return AsyncChatCompletionResponse::fromResponse($response);
-    }
-
-    public function generateAuthToken(string $tokenName): AuthTokenResponse
-    {
-        $parameters['token_name'] = $tokenName;
-
-        $response = $this->apiClient->request(
-            Request::METHOD_POST,
-            'generate_auth_token',
-            [
-                RequestOptions::JSON => $parameters,
-            ]
-        );
-
-        return AuthTokenResponse::fromResponse($response);
-    }
-
-    public function revokeAuthToken(string $authToken): void
-    {
-        $parameters['auth_token'] = $authToken;
-
-        $this->apiClient->request(
-            Request::METHOD_POST,
-            'revoke_auth_token',
-            [
-                RequestOptions::JSON => $parameters,
-            ]
-        );
     }
 }

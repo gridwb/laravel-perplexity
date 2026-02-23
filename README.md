@@ -5,6 +5,7 @@ Laravel Perplexity is a convenient wrapper for interacting with the Perplexity A
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
+    - [Authentication Resource](#authentication-resource)
     - [Search Resource](#search-resource)
     - [Sonar Resource](#sonar-resource)
 - [Testing](#testing)
@@ -30,6 +31,36 @@ Laravel Perplexity is a convenient wrapper for interacting with the Perplexity A
     ```
 
 ## Usage
+
+### `Authentication` Resource
+
+#### `generate auth token`
+
+```php
+<?php
+
+use Gridwb\LaravelPerplexity\Facades\Perplexity;
+
+$tokenName = '<string>';
+
+$response = Perplexity::authentication()->generateAuthToken($tokenName);
+
+echo $response->authToken;
+echo $response->createdAtEpochSeconds;
+echo $response->tokenName;
+```
+
+#### `revoke auth token`
+
+```php
+<?php
+
+use Gridwb\LaravelPerplexity\Facades\Perplexity;
+
+$authToken = '<string>';
+
+Perplexity::authentication()->revokeAuthToken($authToken);
+```
 
 ### `Search` Resource
 
@@ -180,38 +211,6 @@ echo $response->id;
 echo $response->model;
 echo $response->status->value;
 // ...
-```
-
-#### `generate auth token`
-
-Generate auth token request:
-
-```php
-<?php
-
-use Gridwb\LaravelPerplexity\Facades\Perplexity;
-
-$tokenName = '<string>';
-
-$response = Perplexity::sonar()->generateAuthToken($tokenName);
-
-echo $response->authToken;
-echo $response->createdAtEpochSeconds;
-echo $response->tokenName;
-```
-
-#### `revoke auth token`
-
-Revoke auth token request:
-
-```php
-<?php
-
-use Gridwb\LaravelPerplexity\Facades\Perplexity;
-
-$authToken = '<string>';
-
-Perplexity::sonar()->revokeAuthToken($authToken);
 ```
 
 ## Testing
