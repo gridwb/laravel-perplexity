@@ -26,8 +26,8 @@ class ChatCompletionResponse extends AbstractResponse
         public int $created,
         #[DataCollectionOf(ChatCompletionResponseChoice::class)]
         public Collection $choices,
-        public ChatCompletionResponseUsage $usage,
-        public string $object,
+        public ?ChatCompletionResponseUsage $usage = null,
+        public ?string $object = null,
         public ?array $citations = null,
         #[DataCollectionOf(ChatCompletionResponseSearchResult::class)]
         public ?Collection $searchResults = null,

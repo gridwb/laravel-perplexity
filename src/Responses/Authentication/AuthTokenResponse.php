@@ -14,6 +14,6 @@ class AuthTokenResponse extends AbstractResponse
     public function __construct(
         public string $authToken,
         public int $createdAtEpochSeconds,
-        public string $tokenName,
+        public ?string $tokenName = null,
     ) {}
 }
