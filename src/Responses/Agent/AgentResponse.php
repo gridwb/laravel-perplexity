@@ -7,7 +7,7 @@ namespace Gridwb\LaravelPerplexity\Responses\Agent;
 use Gridwb\LaravelPerplexity\Enums\Agent\ObjectType;
 use Gridwb\LaravelPerplexity\Enums\Agent\Status;
 use Gridwb\LaravelPerplexity\Responses\AbstractResponse;
-use Gridwb\LaravelPerplexity\Responses\Agent\Casts\OutputItemCast;
+use Gridwb\LaravelPerplexity\Responses\Agent\Casts\OutputItemCollectionCast;
 use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\AbstractOutputItem;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
@@ -26,7 +26,7 @@ class AgentResponse extends AbstractResponse
         public string $model,
         public ObjectType $object,
         #[DataCollectionOf(AbstractOutputItem::class)]
-        #[WithCast(OutputItemCast::class)]
+        #[WithCast(OutputItemCollectionCast::class)]
         public Collection $output,
         public Status $status,
         public ?AgentResponseError $error = null,

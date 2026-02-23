@@ -14,13 +14,13 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 class SearchResultsOutputItem extends AbstractOutputItem
 {
     /**
-     * @param  Collection<int, SearchResultsOutputItemResult>  $results
+     * @param  Collection<int, SearchResultsOutputItemResult>|null  $results
      * @param  array<int, string>|null  $queries
      */
     public function __construct(
-        #[DataCollectionOf(SearchResultsOutputItemResult::class)]
-        public Collection $results,
         public Type $type,
-        public ?array $queries,
+        #[DataCollectionOf(SearchResultsOutputItemResult::class)]
+        public ?Collection $results = null,
+        public ?array $queries = null,
     ) {}
 }

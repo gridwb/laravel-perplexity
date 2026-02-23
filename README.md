@@ -44,10 +44,7 @@ Generate a response for the provided input with optional web search and reasonin
 <?php
 
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
-use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FetchUrlResultsOutputItem;
-use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FunctionCallOutputItem;
 use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\MessageOutputItem;
-use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\SearchResultsOutputItem;
 
 $response = Perplexity::agent()->createResponse([
     'model' => 'openai/gpt-5.2',
@@ -61,62 +58,66 @@ $response = Perplexity::agent()->createResponse([
 ]);
 
 foreach ($response->output as $outputItem) {
+    /**
+     * One of the output item classes:
+     * \Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\MessageOutputItem
+     * \Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\SearchResultsOutputItem
+     * \Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FetchUrlResultsOutputItem
+     * \Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FunctionCallOutputItem
+     */
     if ($outputItem instanceof MessageOutputItem) {
-        echo $outputItem->id;
-        echo $outputItem->role->value;
-        echo $outputItem->status->value;
-        echo $outputItem->type->value;
-
         foreach ($outputItem->content as $content) {
-            echo $content->text;
-            echo $content->type->value;
-
-            foreach ($content->annotations as $annotation) {
-                echo $annotation->endIndex;
-                echo $annotation->startIndex;
-                echo $annotation->title;
-                echo $annotation->type;
-                echo $annotation->url;
-            }
+            echo $content->text; // full content
         }
     }
+}
+```
 
-    if ($outputItem instanceof SearchResultsOutputItem) {
-        echo $outputItem->type->value;
+#### `create streamed response`
 
-        foreach ($outputItem->results as $result) {
-            echo $result->id;
-            echo $result->snippet;
-            echo $result->title;
-            echo $result->url;
-            echo $result->date;
-            echo $result->lastUpdated;
-            echo $result->source->value;
-        }
+Generate a streamed response for the provided input with optional web search and reasoning.
 
-        foreach ($outputItem->queries ?? [] as $query) {
-            echo $query;
-        }
-    }
+```php
+<?php
 
-    if ($outputItem instanceof FetchUrlResultsOutputItem) {
-        echo $outputItem->type->value;
+use Gridwb\LaravelPerplexity\Facades\Perplexity;
+use Gridwb\LaravelPerplexity\Responses\Agent\StreamAgentResponse;
+use Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\TextDeltaEvent;
 
-        foreach ($outputItem->contents as $content) {
-            echo $content->snippet;
-            echo $content->title;
-            echo $content->url;
-        }
-    }
+$stream = Perplexity::agent()->createStreamedResponse([
+    'model' => 'openai/gpt-5.2',
+    'input' => 'What are the latest developments in AI?',
+    'tools' => [
+        [
+            'type' => 'web_search',
+        ],
+    ],
+    'instructions' => 'You have access to a web_search tool. Use it for questions about current events, news, or recent developments. Use 1 query for simple questions. Keep queries brief: 2-5 words. NEVER ask permission to search - just search when appropriate',
+]);
 
-    if ($outputItem instanceof FunctionCallOutputItem) {
-        echo $outputItem->arguments;
-        echo $outputItem->callId;
-        echo $outputItem->id;
-        echo $outputItem->name;
-        echo $outputItem->status->value;
-        echo $outputItem->type->value;
-        echo $outputItem->thoughtSignature;
+/** @var StreamAgentResponse $response */
+foreach ($stream as $response) {
+    /**
+     * One of the stream event classes:
+     * \Gridwb\LaravelPerplexity\Responses\Agent\ResponseCreatedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\ResponseInProgressEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\ResponseCompletedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\ResponseFailedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\OutputItemAddedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\OutputItemDoneEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\TextDeltaEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\TextDoneEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\ReasoningStartedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\SearchQueriesEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\SearchResultsEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\FetchUrlQueriesEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\FetchUrlResultsEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\ReasoningStoppedEvent
+     */
+    $event = $response->event;
+
+    if ($event instanceof TextDeltaEvent) {
+        echo $event->delta; // delta content
     }
 }
 ```
