@@ -6,7 +6,7 @@ namespace Gridwb\LaravelPerplexity\Resources;
 
 use Gridwb\LaravelPerplexity\Contracts\ApiClientContract;
 use Gridwb\LaravelPerplexity\Contracts\Resources\SearchContract;
-use Gridwb\LaravelPerplexity\Responses\Search\SearchResponse;
+use Gridwb\LaravelPerplexity\Responses\Search\SearchTheWebResponse;
 use GuzzleHttp\RequestOptions;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -16,7 +16,7 @@ readonly class Search implements SearchContract
         private ApiClientContract $apiClient,
     ) {}
 
-    public function search(array $parameters): SearchResponse
+    public function searchTheWeb(array $parameters): SearchTheWebResponse
     {
         $response = $this->apiClient->request(
             Request::METHOD_POST,
@@ -26,6 +26,6 @@ readonly class Search implements SearchContract
             ]
         );
 
-        return SearchResponse::fromResponse($response);
+        return SearchTheWebResponse::fromResponse($response);
     }
 }

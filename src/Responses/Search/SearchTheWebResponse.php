@@ -11,14 +11,14 @@ use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class SearchResponse extends AbstractResponse
+class SearchTheWebResponse extends AbstractResponse
 {
     /**
-     * @param  Collection<int, SearchResponseResult>  $results
+     * @param  Collection<int, SearchTheWebResponseResult>  $results
      */
     public function __construct(
         public string $id,
-        #[DataCollectionOf(SearchResponseResult::class)]
+        #[DataCollectionOf(SearchTheWebResponseResult::class)]
         public Collection $results,
         public ?string $serverTime = null,
     ) {}

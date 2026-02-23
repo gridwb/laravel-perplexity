@@ -9,7 +9,7 @@ use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class SearchResponseResult extends AbstractResponse
+class SearchTheWebResponseResult extends AbstractResponse
 {
     public function __construct(
         public string $title,

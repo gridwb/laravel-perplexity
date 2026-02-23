@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Contracts\Resources;
 
-use Gridwb\LaravelPerplexity\Responses\Search\SearchResponse;
+use Gridwb\LaravelPerplexity\Responses\Search\SearchTheWebResponse;
 use GuzzleHttp\Exception\GuzzleException;
 
 interface SearchContract
@@ -16,5 +16,5 @@ interface SearchContract
      *
      * @see https://docs.perplexity.ai/api-reference/search-post
      */
-    public function search(array $parameters): SearchResponse;
+    public function searchTheWeb(array $parameters): SearchTheWebResponse;
 }

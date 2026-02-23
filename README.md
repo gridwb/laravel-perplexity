@@ -64,9 +64,9 @@ Perplexity::authentication()->revokeAuthToken($authToken);
 
 ### `Search` Resource
 
-#### `search`
+#### `search the web`
 
-Search request:
+Search the web and retrieve relevant web page contents.
 
 ```php
 <?php
