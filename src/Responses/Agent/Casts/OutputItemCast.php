@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Gridwb\LaravelPerplexity\Responses\Agent\Casts;
 
 use Gridwb\LaravelPerplexity\Enums\Agent\Output\Type;
-use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\AbstractOutputItem;
-use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\FetchUrlResultsOutputItem;
-use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\FunctionCallOutputItem;
-use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\MessageOutputItem;
-use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\SearchResultsOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\AbstractOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FetchUrlResultsOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FunctionCallOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\MessageOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\SearchResultsOutputItem;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
 use Spatie\LaravelData\Casts\Cast;

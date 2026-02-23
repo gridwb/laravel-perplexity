@@ -44,10 +44,10 @@ Generate a response for the provided input with optional web search and reasonin
 <?php
 
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
-use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\FetchUrlResultsOutputItem;
-use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\FunctionCallOutputItem;
-use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\MessageOutputItem;
-use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\SearchResultsOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FetchUrlResultsOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FunctionCallOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\MessageOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\SearchResultsOutputItem;
 
 $response = Perplexity::agent()->createResponse([
     'model' => 'openai/gpt-5.2',

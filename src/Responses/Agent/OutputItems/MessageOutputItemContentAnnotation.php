@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gridwb\LaravelPerplexity\Responses\Agent\Outputs;
+namespace Gridwb\LaravelPerplexity\Responses\Agent\OutputItems;
 
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;

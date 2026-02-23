@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gridwb\LaravelPerplexity\Responses\Agent\Outputs;
+namespace Gridwb\LaravelPerplexity\Responses\Agent\OutputItems;
 
 use Gridwb\LaravelPerplexity\Enums\Agent\Output\Type;
 use Illuminate\Support\Collection;

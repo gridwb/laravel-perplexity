@@ -8,7 +8,7 @@ use Gridwb\LaravelPerplexity\Enums\Agent\ObjectType;
 use Gridwb\LaravelPerplexity\Enums\Agent\Status;
 use Gridwb\LaravelPerplexity\Responses\AbstractResponse;
 use Gridwb\LaravelPerplexity\Responses\Agent\Casts\OutputItemCast;
-use Gridwb\LaravelPerplexity\Responses\Agent\Outputs\AbstractOutputItem;
+use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\AbstractOutputItem;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Attributes\MapName;
