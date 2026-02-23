@@ -6,7 +6,9 @@ namespace Gridwb\LaravelPerplexity;
 
 use Gridwb\LaravelPerplexity\Contracts\ApiClientContract;
 use Gridwb\LaravelPerplexity\Contracts\ClientContract;
+use Gridwb\LaravelPerplexity\Contracts\Resources\EmbeddingsContract;
 use Gridwb\LaravelPerplexity\Resources\Authentication;
+use Gridwb\LaravelPerplexity\Resources\Embeddings;
 use Gridwb\LaravelPerplexity\Resources\Search;
 use Gridwb\LaravelPerplexity\Resources\Sonar;
 
@@ -19,6 +21,11 @@ readonly class Client implements ClientContract
     public function authentication(): Authentication
     {
         return new Authentication($this->apiClient);
+    }
+
+    public function embeddings(): EmbeddingsContract
+    {
+        return new Embeddings($this->apiClient);
     }
 
     public function sonar(): Sonar

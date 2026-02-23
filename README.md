@@ -6,6 +6,7 @@ Laravel Perplexity is a convenient wrapper for interacting with the Perplexity A
 - [Installation](#installation)
 - [Usage](#usage)
     - [Authentication Resource](#authentication-resource)
+    - [Embeddings Resource](#embeddings-resource)
     - [Search Resource](#search-resource)
     - [Sonar Resource](#sonar-resource)
 - [Testing](#testing)
@@ -66,6 +67,66 @@ $authToken = '<string>';
 Perplexity::authentication()->revokeAuthToken($authToken);
 ```
 
+### `Embeddings` Resource
+
+#### `create embeddings`
+
+Generate embeddings for a list of texts. Use these embeddings for semantic search, clustering, and other machine learning applications.
+
+```php
+<?php
+
+use Gridwb\LaravelPerplexity\Facades\Perplexity;
+
+$response = Perplexity::embeddings()->createEmbeddings([
+    'input' => 'Scientists explore the universe driven by curiosity.',
+    'model' => 'pplx-embed-v1-4b',
+]);
+
+foreach ($response->data as $embedding) {
+    echo $embedding->object;
+    echo $embedding->index;
+    echo $embedding->embedding;
+}
+```
+
+#### `create contextualized embeddings`
+
+Generate contextualized embeddings for document chunks. Chunks from the same document share context awareness, improving retrieval quality for document-based applications.
+
+```php
+<?php
+
+use Gridwb\LaravelPerplexity\Facades\Perplexity;
+
+$response = Perplexity::embeddings()->createContextualizedEmbeddings([
+    'input' => [
+        // Document 1: Three chunks
+        [
+            'Curiosity begins in childhood with endless questions about the world.',
+            'As we grow, curiosity drives us to explore new ideas and challenge assumptions.',
+            'Scientific breakthroughs often start with a simple curious question.',
+        ],
+        // Document 2: Two chunks
+        [
+            'The Curiosity rover explores Mars, searching for signs of ancient life.',
+            'Each discovery on Mars sparks new questions about our place in the universe.',
+        ],
+    ],
+    'model' => 'pplx-embed-context-v1-4b',
+]);
+
+foreach ($response->data as $contextualizedEmbedding) {
+    echo $contextualizedEmbedding->object;
+    echo $contextualizedEmbedding->index;
+    foreach ($contextualizedEmbedding->data as $embedding) {
+        echo $embedding->object;
+        echo $embedding->index;
+        echo $embedding->embedding;
+    }
+}
+```
+
 ### `Search` Resource
 
 #### `search the web`
@@ -80,9 +141,6 @@ use Gridwb\LaravelPerplexity\Facades\Perplexity;
 $response = Perplexity::search()->search([
     'query' => 'latest AI developments 2026',
 ]);
-
-echo $response->id;
-echo $response->serverTime;
 
 foreach ($response->results as $result) {
     echo $result->title;
