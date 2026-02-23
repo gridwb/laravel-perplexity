@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Responses\Sonar;
 
-use Gridwb\LaravelPerplexity\Enums\Chat\AsyncCompletion\Status;
+use Gridwb\LaravelPerplexity\Enums\Sonar\Chat\AsyncCompletion\Status;
 use Gridwb\LaravelPerplexity\Responses\AbstractResponse;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;

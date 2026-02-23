@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gridwb\LaravelPerplexity\Enums\Chat\Completion;
+namespace Gridwb\LaravelPerplexity\Enums\Sonar\Chat\Completion;
 
 enum Status: string
 {

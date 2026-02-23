@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Responses\Sonar;
 
-use Gridwb\LaravelPerplexity\Enums\Chat\Completion\Status;
-use Gridwb\LaravelPerplexity\Enums\Chat\Completion\Type;
+use Gridwb\LaravelPerplexity\Enums\Sonar\Chat\Completion\Status;
+use Gridwb\LaravelPerplexity\Enums\Sonar\Chat\Completion\Type;
 use Gridwb\LaravelPerplexity\Responses\AbstractResponse;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\DataCollectionOf;

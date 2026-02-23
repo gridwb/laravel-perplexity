@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gridwb\LaravelPerplexity\Enums\Chat\Completion\Choice\Message;
+namespace Gridwb\LaravelPerplexity\Enums\Sonar\Chat\Completion\Choice\Message;
 
 enum Role: string
 {

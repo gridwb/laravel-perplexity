@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gridwb\LaravelPerplexity\Enums\Chat\Completion\SearchResult;
+namespace Gridwb\LaravelPerplexity\Enums\Sonar\Chat\Completion\SearchResult;
 
 enum Source: string
 {
