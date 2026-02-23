@@ -6,8 +6,8 @@ namespace Gridwb\LaravelPerplexity\Enums\Chat\AsyncCompletion;
 
 enum Status: string
 {
-    case CREATED = 'CREATED';
-    case IN_PROGRESS = 'IN_PROGRESS';
-    case COMPLETED = 'COMPLETED';
-    case FAILED = 'FAILED';
+    case Created = 'CREATED';
+    case InProgress = 'IN_PROGRESS';
+    case Completed = 'COMPLETED';
+    case Failed = 'FAILED';
 }
