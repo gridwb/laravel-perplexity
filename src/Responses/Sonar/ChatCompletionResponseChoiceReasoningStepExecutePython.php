@@ -9,10 +9,10 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class CompletionResponseChoiceToolCallFunction extends Data
+class ChatCompletionResponseChoiceReasoningStepExecutePython extends Data
 {
     public function __construct(
-        public ?string $name = null,
-        public ?string $arguments = null,
+        public string $code,
+        public string $result,
     ) {}
 }

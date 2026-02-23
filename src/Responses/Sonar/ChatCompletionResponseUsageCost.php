@@ -9,7 +9,7 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class CompletionResponseUsageCost extends Data
+class ChatCompletionResponseUsageCost extends Data
 {
     public function __construct(
         public int $inputTokensCost,

@@ -93,7 +93,7 @@ Streamed completions request:
 <?php
 
 use Gridwb\LaravelPerplexity\Facades\Perplexity;
-use Gridwb\LaravelPerplexity\Responses\Sonar\CompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\ChatCompletionResponse;
 
 $stream = Perplexity::sonar()->createStreamedCompletion([
     'model' => 'sonar',
@@ -105,7 +105,7 @@ $stream = Perplexity::sonar()->createStreamedCompletion([
     ],
 ]);
 
-/** @var CompletionResponse $response */
+/** @var ChatCompletionResponse $response */
 foreach ($stream as $response) {
     foreach ($response->choices as $choice) {
         echo $choice->delta->content; // delta content

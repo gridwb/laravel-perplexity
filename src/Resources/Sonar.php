@@ -7,10 +7,10 @@ namespace Gridwb\LaravelPerplexity\Resources;
 use Gridwb\LaravelPerplexity\Contracts\ApiClientContract;
 use Gridwb\LaravelPerplexity\Contracts\Resources\SonarContract;
 use Gridwb\LaravelPerplexity\Resources\Concerns\Streamable;
-use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncCompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncChatCompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncChatCompletionsResponse;
 use Gridwb\LaravelPerplexity\Responses\Sonar\AuthTokenResponse;
-use Gridwb\LaravelPerplexity\Responses\Sonar\CompletionResponse;
-use Gridwb\LaravelPerplexity\Responses\Sonar\ListAsyncCompletionsResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\ChatCompletionResponse;
 use Gridwb\LaravelPerplexity\Responses\StreamResponse;
 use GuzzleHttp\RequestOptions;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +23,7 @@ readonly class Sonar implements SonarContract
         private ApiClientContract $apiClient,
     ) {}
 
-    public function createCompletion(array $parameters): CompletionResponse
+    public function createChatCompletion(array $parameters): ChatCompletionResponse
     {
         $this->ensureNotStreamed($parameters);
 
@@ -35,10 +35,10 @@ readonly class Sonar implements SonarContract
             ]
         );
 
-        return CompletionResponse::fromResponse($response);
+        return ChatCompletionResponse::fromResponse($response);
     }
 
-    public function createStreamedCompletion(array $parameters): StreamResponse
+    public function createStreamedChatCompletion(array $parameters): StreamResponse
     {
         $parameters = $this->setStreamParameter($parameters);
 
@@ -51,10 +51,10 @@ readonly class Sonar implements SonarContract
             ]
         );
 
-        return new StreamResponse(CompletionResponse::class, $response);
+        return new StreamResponse(ChatCompletionResponse::class, $response);
     }
 
-    public function createAsyncCompletion(array $parameters): AsyncCompletionResponse
+    public function createAsyncChatCompletion(array $parameters): AsyncChatCompletionResponse
     {
         $response = $this->apiClient->request(
             Request::METHOD_POST,
@@ -64,10 +64,10 @@ readonly class Sonar implements SonarContract
             ]
         );
 
-        return AsyncCompletionResponse::fromResponse($response);
+        return AsyncChatCompletionResponse::fromResponse($response);
     }
 
-    public function listAsyncCompletions(?int $limit = null, ?string $nextToken = null): ListAsyncCompletionsResponse
+    public function listAsyncChatCompletions(?int $limit = null, ?string $nextToken = null): AsyncChatCompletionsResponse
     {
         $parameters = [];
 
@@ -86,17 +86,17 @@ readonly class Sonar implements SonarContract
             ]
         );
 
-        return ListAsyncCompletionsResponse::fromResponse($response);
+        return AsyncChatCompletionsResponse::fromResponse($response);
     }
 
-    public function getAsyncCompletion(string $requestId): AsyncCompletionResponse
+    public function getAsyncChatCompletion(string $requestId): AsyncChatCompletionResponse
     {
         $response = $this->apiClient->request(
             Request::METHOD_GET,
             "async/chat/completions/$requestId"
         );
 
-        return AsyncCompletionResponse::fromResponse($response);
+        return AsyncChatCompletionResponse::fromResponse($response);
     }
 
     public function generateAuthToken(string $tokenName): AuthTokenResponse

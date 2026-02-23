@@ -11,13 +11,13 @@ use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class ListAsyncCompletionsResponse extends AbstractResponse
+class AsyncChatCompletionsResponse extends AbstractResponse
 {
     /**
-     * @param  Collection<int, AsyncCompletionResponse>  $requests
+     * @param  Collection<int, AsyncChatCompletionResponse>  $requests
      */
     public function __construct(
-        #[DataCollectionOf(AsyncCompletionResponse::class)]
+        #[DataCollectionOf(AsyncChatCompletionResponse::class)]
         public Collection $requests,
         public ?int $nextToken = null,
     ) {}

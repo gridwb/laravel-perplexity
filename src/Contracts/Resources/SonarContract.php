@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Contracts\Resources;
 
-use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncCompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncChatCompletionResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\AsyncChatCompletionsResponse;
 use Gridwb\LaravelPerplexity\Responses\Sonar\AuthTokenResponse;
-use Gridwb\LaravelPerplexity\Responses\Sonar\CompletionResponse;
-use Gridwb\LaravelPerplexity\Responses\Sonar\ListAsyncCompletionsResponse;
+use Gridwb\LaravelPerplexity\Responses\Sonar\ChatCompletionResponse;
 use Gridwb\LaravelPerplexity\Responses\StreamResponse;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -20,17 +20,17 @@ interface SonarContract
      *
      * @see https://docs.perplexity.ai/api-reference/chat-completions-post
      */
-    public function createCompletion(array $parameters): CompletionResponse;
+    public function createChatCompletion(array $parameters): ChatCompletionResponse;
 
     /**
      * @param  array<string, mixed>  $parameters
-     * @return StreamResponse<CompletionResponse>
+     * @return StreamResponse<ChatCompletionResponse>
      *
      * @throws GuzzleException
      *
      * @see https://docs.perplexity.ai/api-reference/chat-completions-post
      */
-    public function createStreamedCompletion(array $parameters): StreamResponse;
+    public function createStreamedChatCompletion(array $parameters): StreamResponse;
 
     /**
      * @param  array<string, mixed>  $parameters
@@ -39,21 +39,21 @@ interface SonarContract
      *
      * @see https://docs.perplexity.ai/api-reference/async-chat-completions-post
      */
-    public function createAsyncCompletion(array $parameters): AsyncCompletionResponse;
+    public function createAsyncChatCompletion(array $parameters): AsyncChatCompletionResponse;
 
     /**
      * @throws GuzzleException
      *
      * @see https://docs.perplexity.ai/api-reference/async-chat-completions-get
      */
-    public function listAsyncCompletions(?int $limit = null, ?string $nextToken = null): ListAsyncCompletionsResponse;
+    public function listAsyncChatCompletions(?int $limit = null, ?string $nextToken = null): AsyncChatCompletionsResponse;
 
     /**
      * @throws GuzzleException
      *
      * @see https://docs.perplexity.ai/api-reference/async-chat-completions-request_id-get
      */
-    public function getAsyncCompletion(string $requestId): AsyncCompletionResponse;
+    public function getAsyncChatCompletion(string $requestId): AsyncChatCompletionResponse;
 
     /**
      * @throws GuzzleException

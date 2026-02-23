@@ -11,15 +11,13 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class CompletionResponseChoiceReasoningStepWebSearch extends Data
+class ChatCompletionResponseChoiceReasoningStepFetchUrlContent extends Data
 {
     /**
-     * @param  Collection<int, CompletionResponseSearchResult>  $searchResults
-     * @param  array<int, string>  $searchKeywords
+     * @param  Collection<int, ChatCompletionResponseSearchResult>  $contents
      */
     public function __construct(
-        #[DataCollectionOf(CompletionResponseSearchResult::class)]
-        public Collection $searchResults,
-        public array $searchKeywords,
+        #[DataCollectionOf(ChatCompletionResponseSearchResult::class)]
+        public Collection $contents,
     ) {}
 }

@@ -10,7 +10,7 @@ use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class AsyncCompletionResponse extends AbstractResponse
+class AsyncChatCompletionResponse extends AbstractResponse
 {
     public function __construct(
         public string $id,
@@ -21,6 +21,6 @@ class AsyncCompletionResponse extends AbstractResponse
         public ?int $completedAt = null,
         public ?int $failedAt = null,
         public ?string $errorMessage = null,
-        public ?CompletionResponse $response = null,
+        public ?ChatCompletionResponse $response = null,
     ) {}
 }

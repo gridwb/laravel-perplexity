@@ -10,12 +10,12 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class CompletionResponseChoice extends Data
+class ChatCompletionResponseChoice extends Data
 {
     public function __construct(
         public int $index,
-        public CompletionResponseChoiceMessage $message,
-        public CompletionResponseChoiceDelta $delta,
+        public ChatCompletionResponseChoiceMessage $message,
+        public ChatCompletionResponseChoiceDelta $delta,
         public ?FinishReason $finishReason = null,
     ) {}
 }

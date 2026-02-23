@@ -9,13 +9,13 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class CompletionResponseChoiceReasoningStep extends Data
+class ChatCompletionResponseChoiceReasoningStep extends Data
 {
     public function __construct(
         public string $thought,
-        public CompletionResponseChoiceReasoningStepWebSearch $webSearch,
-        public CompletionResponseChoiceReasoningStepFetchUrlContent $fetchUrlContent,
-        public CompletionResponseChoiceReasoningStepExecutePython $executePython,
+        public ChatCompletionResponseChoiceReasoningStepWebSearch $webSearch,
+        public ChatCompletionResponseChoiceReasoningStepFetchUrlContent $fetchUrlContent,
+        public ChatCompletionResponseChoiceReasoningStepExecutePython $executePython,
         public ?string $type = null,
     ) {}
 }

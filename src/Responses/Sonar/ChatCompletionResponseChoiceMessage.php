@@ -12,18 +12,18 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class CompletionResponseChoiceMessage extends Data
+class ChatCompletionResponseChoiceMessage extends Data
 {
     /**
-     * @param  Collection<int, CompletionResponseChoiceReasoningStep>|null  $reasoningSteps
-     * @param  Collection<int, CompletionResponseChoiceToolCall>|null  $toolCalls
+     * @param  Collection<int, ChatCompletionResponseChoiceReasoningStep>|null  $reasoningSteps
+     * @param  Collection<int, ChatCompletionResponseChoiceToolCall>|null  $toolCalls
      */
     public function __construct(
         public Role $role,
         public string $content,
-        #[DataCollectionOf(CompletionResponseChoiceReasoningStep::class)]
+        #[DataCollectionOf(ChatCompletionResponseChoiceReasoningStep::class)]
         public ?Collection $reasoningSteps = null,
-        #[DataCollectionOf(CompletionResponseChoiceToolCall::class)]
+        #[DataCollectionOf(ChatCompletionResponseChoiceToolCall::class)]
         public ?Collection $toolCalls = null,
         public ?string $toolCallId = null,
     ) {}
