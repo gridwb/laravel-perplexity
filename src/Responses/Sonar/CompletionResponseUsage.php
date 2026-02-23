@@ -15,6 +15,7 @@ class CompletionResponseUsage extends Data
         public int $promptTokens,
         public int $completionTokens,
         public int $totalTokens,
+        public ?CompletionResponseUsageCost $cost = null,
         public ?string $searchContextSize = null,
         public ?int $citationTokens = null,
         public ?int $numSearchQueries = null,

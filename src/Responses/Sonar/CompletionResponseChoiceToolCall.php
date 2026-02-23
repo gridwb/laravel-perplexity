@@ -9,13 +9,11 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-class CompletionResponseVideo extends Data
+class CompletionResponseChoiceToolCall extends Data
 {
     public function __construct(
-        public string $url,
-        public ?string $thumbnailUrl = null,
-        public ?string $thumbnailWidth = null,
-        public ?string $thumbnailHeight = null,
-        public ?string $duration = null,
+        public ?string $id = null,
+        public ?string $type = null,
+        public ?CompletionResponseChoiceToolCallFunction $function = null,
     ) {}
 }

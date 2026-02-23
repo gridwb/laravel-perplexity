@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Responses\Sonar;
 
+use Gridwb\LaravelPerplexity\Enums\Chat\Completion\SearchResult\Source;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
@@ -15,5 +16,8 @@ class CompletionResponseSearchResult extends Data
         public string $title,
         public string $url,
         public ?string $date = null,
+        public ?string $lastUpdated = null,
+        public string $snippet = '',
+        public Source $source = Source::Web,
     ) {}
 }

@@ -6,7 +6,8 @@ namespace Gridwb\LaravelPerplexity\Enums\Chat\Completion\Choice\Message;
 
 enum Role: string
 {
-    case SYSTEM = 'system';
-    case USER = 'user';
-    case ASSISTANT = 'assistant';
+    case System = 'system';
+    case User = 'user';
+    case Assistant = 'assistant';
+    case Tool = 'tool';
 }
