@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Responses\Agent\Casts;
 
-use Gridwb\LaravelPerplexity\Enums\Agent\Output\Type;
+use Gridwb\LaravelPerplexity\Enums\Agent\OutputItem\Type;
 use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\AbstractOutputItem;
 use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FetchUrlResultsOutputItem;
 use Gridwb\LaravelPerplexity\Responses\Agent\OutputItems\FunctionCallOutputItem;

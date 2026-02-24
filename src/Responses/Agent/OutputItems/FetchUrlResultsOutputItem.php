@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Responses\Agent\OutputItems;
 
-use Gridwb\LaravelPerplexity\Enums\Agent\Output\Type;
+use Gridwb\LaravelPerplexity\Enums\Agent\OutputItem\Type;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Attributes\MapName;

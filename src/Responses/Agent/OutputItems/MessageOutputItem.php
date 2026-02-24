@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Responses\Agent\OutputItems;
 
-use Gridwb\LaravelPerplexity\Enums\Agent\Output\Role;
-use Gridwb\LaravelPerplexity\Enums\Agent\Output\Status;
-use Gridwb\LaravelPerplexity\Enums\Agent\Output\Type;
+use Gridwb\LaravelPerplexity\Enums\Agent\OutputItem\Role;
+use Gridwb\LaravelPerplexity\Enums\Agent\OutputItem\Status;
+use Gridwb\LaravelPerplexity\Enums\Agent\OutputItem\Type;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Attributes\MapName;

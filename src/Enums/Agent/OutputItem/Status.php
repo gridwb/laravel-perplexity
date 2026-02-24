@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gridwb\LaravelPerplexity\Enums\Agent\Output;
+namespace Gridwb\LaravelPerplexity\Enums\Agent\OutputItem;
 
 enum Status: string
 {
