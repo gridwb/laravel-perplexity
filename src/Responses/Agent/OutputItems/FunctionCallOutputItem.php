@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Gridwb\LaravelPerplexity\Responses\Agent\OutputItems;
 
-use Gridwb\LaravelPerplexity\Enums\Agent\Output\Status;
-use Gridwb\LaravelPerplexity\Enums\Agent\Output\Type;
+use Gridwb\LaravelPerplexity\Enums\Agent\OutputItem\Status;
+use Gridwb\LaravelPerplexity\Enums\Agent\OutputItem\Type;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 

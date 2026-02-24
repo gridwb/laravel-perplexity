@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gridwb\LaravelPerplexity\Enums\Agent\Output\Content;
+namespace Gridwb\LaravelPerplexity\Enums\Agent\OutputItem\Content;
 
 enum Type: string
 {

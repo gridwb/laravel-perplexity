@@ -99,20 +99,20 @@ $stream = Perplexity::agent()->createStreamedResponse([
 foreach ($stream as $response) {
     /**
      * One of the stream event classes:
-     * \Gridwb\LaravelPerplexity\Responses\Agent\ResponseCreatedEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\ResponseInProgressEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\ResponseCompletedEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\ResponseFailedEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\OutputItemAddedEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\OutputItemDoneEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\TextDeltaEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\TextDoneEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\ReasoningStartedEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\SearchQueriesEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\SearchResultsEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\FetchUrlQueriesEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\FetchUrlResultsEvent
-     * \Gridwb\LaravelPerplexity\Responses\Agent\ReasoningStoppedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\ResponseCreatedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\ResponseInProgressEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\ResponseCompletedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\ResponseFailedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\OutputItemAddedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\OutputItemDoneEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\TextDeltaEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\TextDoneEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\ReasoningStartedEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\SearchQueriesEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\SearchResultsEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\FetchUrlQueriesEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\FetchUrlResultsEvent
+     * \Gridwb\LaravelPerplexity\Responses\Agent\StreamEvents\ReasoningStoppedEvent
      */
     $event = $response->event;
 
