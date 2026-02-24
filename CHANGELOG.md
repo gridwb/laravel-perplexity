@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-perplexity` will be documented in this file.
 
+## 1.2.1 - 2026-02-24
+- added `createStreamedResponse` operation for `agent` resource
+- updated docs
+
 ## 1.2.0 - 2026-02-23
 
 - updated all existing resources
