@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Gridwb\LaravelPerplexity\Responses\Embeddings;
 
 use Gridwb\LaravelPerplexity\Responses\AbstractResponse;
+use Gridwb\LaravelPerplexity\Responses\Embeddings\Objects\EmbeddingObject;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Attributes\MapName;
